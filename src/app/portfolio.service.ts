@@ -37,12 +37,13 @@ export class PortfolioService {
 
     async getPortfolio(): Promise<Coin[]> {
         const uid = this.authService.getCurrentUserId();
-        const querySnapshot = await getDocs(collection(this.db, `users/${uid}/portfolio`));
+        const querySnapshot = await getDocs(collection(this.db, `usuarios/${uid}/portfolio`));
         this.portfolio = querySnapshot.docs.map((doc) => {
             const data = doc.data() as Coin; // Convierte DocumentData a Coin
-            data.id = doc.id; // Asegúrate de que Coin tiene una propiedad id
+            data.id = doc.id;
             return data;
         });
+        console.log("Portfolio:" + this.portfolio);
         return this.portfolio;
     }
 }

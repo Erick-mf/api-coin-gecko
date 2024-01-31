@@ -23,7 +23,6 @@ export class AuthService {
         this.firestore = getFirestore();
     }
 
-    // Método para iniciar sesión
     async signIn(email: string, password: string) {
         try {
             const credential = await signInWithEmailAndPassword(this.auth, email, password);
@@ -56,6 +55,7 @@ export class AuthService {
             const errorMessage = error.message;
             const email = error.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
+            console.error(errorCode, errorMessage, email, credential);
         }
     }
 
@@ -63,29 +63,22 @@ export class AuthService {
     async signUp(email: string, password: string) {
         try {
             const credential = await createUserWithEmailAndPassword(this.auth, email, password);
-            // La cuenta se ha creado correctamente
-            // Aquí puedes guardar información en Firestore si lo necesitas
             const userDoc = doc(this.firestore, "usuarios", credential.user.uid);
             await setDoc(userDoc, {
-                /* datos del usuario */
                 uid: credential.user.uid,
                 email: credential.user.email,
             });
             this.router.navigate(["/login"]);
         } catch (error) {
-            // Maneja el error
             console.error(error);
         }
     }
 
-    // Método para cerrar sesión
     async signOut() {
         try {
             await signOut(this.auth);
             this.router.navigate(["/home"]);
-            // El usuario ha cerrado sesión correctamente
         } catch (error) {
-            // Maneja el error
             console.error(error);
         }
     }
@@ -97,5 +90,14 @@ export class AuthService {
         } else {
             throw new Error("El usuario no está autenticado");
         }
+    }
+    isLoggedIn(): boolean {
+        const user = this.auth.currentUser;
+        if (user) {
+            return true;
+        } else {
+            return false;
+        }
+        //return true;
     }
 }

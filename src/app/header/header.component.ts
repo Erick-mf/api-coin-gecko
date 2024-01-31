@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MenuComponent } from "../menu/menu.component";
 import { RouterLink, Router } from "@angular/router";
 import { ButtonComponent } from "../button/button.component";
+import { AuthService } from "../auth.service";
 
 @Component({
     selector: "app-header",
@@ -11,9 +12,15 @@ import { ButtonComponent } from "../button/button.component";
 })
 export class HeaderComponent {
     logo: string = "[ CoinFake /]";
-    isLogin: boolean = true;
+    isLogin: boolean;
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+    ) {
+        this.isLogin = this.authService.isLoggedIn();
+        console.log(this.isLogin);
+    }
 
     isLoginOrRegisterRoute() {
         const route = this.router.url;

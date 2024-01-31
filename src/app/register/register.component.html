@@ -1,6 +1,6 @@
 <section class="flex items-center flex-col w-[30%] h-[60vh] mx-auto">
     <h1 class="text-3xl my-8">Registrar Cuenta</h1>
-    <form class="w-full shadow-lg p-4" (submit)="signUp($event, email.value, password.value)">
+    <form class="w-full shadow-lg p-4" (submit)="signUp($event)">
         <div class="mb-10">
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 mt-4">Correo electrónico</label>
             <input
@@ -10,7 +10,7 @@
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="name@example.com"
                 required
-                #email
+                [(ngModel)]="email"
             />
         </div>
         <div class="mb-10">
@@ -21,7 +21,7 @@
                 name="password"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 required
-                #password
+                [(ngModel)]="password"
             />
         </div>
         <div class="w-full flex items-center justify-between">

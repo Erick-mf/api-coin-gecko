@@ -1,1 +1,10 @@
-{}
+{
+  "hosting": {
+    "public": "dist/coin-gecko/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
