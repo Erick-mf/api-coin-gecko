@@ -1,0 +1,9 @@
+// get list of coins
+GET https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h&locale=es&precision=1
+GET https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids=wen&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h&locale=es&precision=1
+
+// get details for bitcoin
+GET https://api.coingecko.com/api/v3/coins/bitcoin
+
+// get trending
+GET https://api.coingecko.com/api/v3/search/trending

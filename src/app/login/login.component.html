@@ -1,0 +1,51 @@
+<section class="flex items-center flex-col w-[35%] h-[60vh] mx-auto">
+    <h1 class="text-3xl my-8">Inicio de Sesión</h1>
+    <form class="w-full shadow-lg p-4" (submit)="signIn(email.value, password.value)">
+        <div class="mb-10">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 mt-4">Correo electrónico</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="name@example.com"
+                required
+                #email
+            />
+        </div>
+        <div class="mb-10">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Contraseña</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                required
+                #password
+            />
+        </div>
+        <div class="w-full flex items-center justify-between">
+            <button
+                type="submit"
+                class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4 w-[45%]"
+            >
+                Iniciar Sesión
+            </button>
+            <!-- routerLink="/register" -->
+            <button
+                type="button"
+                class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4 w-[45%]"
+                (click)="signInWithGoogle()"
+            >
+                Iniciar sesión con Google
+            </button>
+        </div>
+        <button
+            type="button"
+            class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-4 mx-auto w-full"
+            routerLink="/register"
+        >
+            No estás registrado ?
+        </button>
+    </form>
+</section>

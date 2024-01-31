@@ -1,0 +1,77 @@
+<section class="grid grid-cols-6 mt-2 min-h-[90vh]">
+    <div class="col-span-1">
+        <aside class="p-4 bg-gray-100 h-full">
+            <h2 class="mb-2 text-lg font-semibold text-gray-900">Users</h2>
+            <ul class="space-y-1 list-none">
+                <li class="hover:text-blue-500">
+                    <a href="#" class="flex items-center" routerLink="/crypto">Criptomonedas</a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <div class="col-span-5 bg-gray-50">
+        <table class="w-full text-sm text-left rtl:text-center">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr class="flex items-center">
+                    <th scope="col" class="pl-6 py-3 w-[20%]">Nombre</th>
+                    <th scope="col" class="py-3 w-[8%]">Símbolo</th>
+                    <th scope="col" class="py-3 w-[12%]">Precio Actual</th>
+                    <th scope="col" class="py-3 w-[20%]">Capitalización de Mercado</th>
+                    <th scope="col" class="py-3 w-[12%]">Volumen Total</th>
+                    <th scope="col" class="py-3 w-[10%]">Alto en 24h</th>
+                    <th scope="col" class="py-3 w-[10%]">Bajo en 24h</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (coin of portfolio; track coin.id) {
+                    <tr class="bg-white border-b flex flex-row items-center">
+                        <td class="px-2 py-4 flex flex-row items-center w-[20%]">
+                            <svg
+                                class="w-[13%] h-[13%] ms-3"
+                                [class.text-yellow-300]="isInPortfolio(coin)"
+                                [class.text-gray-300]="!isInPortfolio(coin)"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                viewBox="0 0 22 20"
+                                (click)="toggleCoin(coin)"
+                            >
+                                <path
+                                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                                />
+                            </svg>
+                            <img class="px-2 w-[20%]" src="{{ coin.image }}" />
+                            <p>{{ coin.name }}</p>
+                        </td>
+                        <td class="py-4 w-[8%]">
+                            <p>{{ coin.symbol }}</p>
+                        </td>
+                        <td class="py-4 w-[12%]">
+                            <p>{{ coin.current_price }}</p>
+                        </td>
+                        <td class="py-4 w-[20%]">
+                            <p>{{ coin.market_cap }}</p>
+                        </td>
+                        <td class="py-4 w-[12%]">
+                            <p>{{ coin.total_volume }}</p>
+                        </td>
+                        <td class="py-4 w-[10%]">
+                            <p>{{ coin.high_24h }}</p>
+                        </td>
+                        <td class="py-4 w-[10%]">
+                            <p>{{ coin.low_24h }}</p>
+                        </td>
+                        <td class="flex flex-row">
+                            <a
+                                routerLink="/crypto/details/{{ coin.id }}"
+                                class="w-15 h-8 hover:text-blue-500 font-bold mx-1"
+                            >
+                                Ver detalles
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

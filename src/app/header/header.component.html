@@ -1,0 +1,18 @@
+<section>
+    <a
+        routerLink="/home"
+        class="mx-2 hover:transition hover:duration-300 hover:text-cyan-500 text-2xl tracking-wider"
+        >{{ logo }}</a
+    >
+</section>
+@if (isLogin) {
+    <app-menu class="flex flex-row items-center justify-between" />
+} @else {
+    @if (!isLoginOrRegisterRoute()) {
+        <section>
+            <app-button text_btn="Iniciar Sesión" routerLink="/login" />
+        </section>
+    } @else {
+        <app-button text_btn="Regresar al inicio" routerLink="/home" />
+    }
+}
